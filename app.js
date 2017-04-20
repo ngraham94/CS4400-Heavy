@@ -8,24 +8,30 @@ const connection = mysql.createConnection({
 });
 
 connection.connect();
-console.log("sending query...");
-connection.query('SELECT * FROM CITYSTATE', function (error, results, fields) {
-
-    if (error) throw error;
-    console.log(results[0].city);
-});
-
-connection.end();
-console.log("response received...");
 
 $('#register').click(function() {
     alert("You clicked Register!");
-    mainWindow.loadURL(url.format({
-        pathname: path.join(__dirname, 'register_form.html'),
-        protocol: 'file:',
-        slashes: true}));
+    window.location=("register.html");
 })
 
 $('#login').click(function() {
+    let username = $('#username').val();
+    let password = $('#password').val();
+    //This block of code when you want to perfrom a query-------------------------------------------------------------------
+    let query = "SELECT u.username, u.password FROM USER as u\n" +
+            "WHERE u.username=\'" + username + "\'\n" +
+            "AND u.password=\'" + password + "\';";
+    console.log("sending query...\n" + query);
+    connection.query(query, function (error, results, fields) {
+        if (error) throw error;
+        if(results.length == 0) {
+            alert("Invalid credentials");
+        } else {
+            if (username = results[0].username && password == results[0].password) {
+                alert("Login success!");
+            }
+        }
+    });
+//----------------------------------------------------------------------------------------------------------------------
     alert("You logged in yo!");
 })

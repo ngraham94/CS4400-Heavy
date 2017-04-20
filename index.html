@@ -13,14 +13,11 @@
 <body>
 
 <h1>Login</h1>
-<form action="" method="post">
     <!-- All of the Node.js APIs are available in this renderer process. -->
     <span class="error">* <?php echo $usernameErr;?></span>
-    <input type="text" name="username">
+    <input type="text" id="username">
     <span class="error">* <?php echo $passwordErr;?></span>
-    <input type="text" name="password">
-    <input input type="submit" name="submit" value="Submit">
-</form>
+    <input type="text" id="password">
 <br>
 <button id="login">Login</button>
 <button id="register" onclick="register()">Register</button>
