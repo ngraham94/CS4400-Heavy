@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="833a1b66-1335-4ed8-903c-79928cc13dbf" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/register.html" afterPath="$PROJECT_DIR$/register.html" />
     </list>
     <ignored path="CS4400-Heavy.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -527,7 +526,14 @@
       <option name="project" value="LOCAL" />
       <updated>1492725942746</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Registration Drop Down Menu&#10;">
+      <created>1492727592546</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1492727592546</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -582,7 +588,8 @@
     <MESSAGE value="Initial Commit" />
     <MESSAGE value="new register screen" />
     <MESSAGE value="Registration Screen Fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="Registration Screen Fixed" />
+    <MESSAGE value="Registration Drop Down Menu&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Registration Drop Down Menu&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
