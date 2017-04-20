@@ -8,7 +8,7 @@
             #container {width:300px; margin:0 auto;}
 
             /* Nicely lines up the labels. */
-            form label {display:inline-block; width:140px;}
+            form label {display:inline-block; width:120px;}
 
             /* You could add a class to all the input boxes instead, if you like. That would be safer, and more backwards-compatible */
             form input[type="text"],
@@ -28,9 +28,20 @@
         <div class="line"><label for="email">Email *: </label><input type="email" id="email" /></div>
         <div class="line"><label for="pwd">Password *: </label><input type="password" id="pwd" /></div>
         <div class="line"><label for="cfp">Confirm Password*: </label><input type="password" id="cfp" /></div>
+        <select name="user_type">
+            <option hidden="true">Please choose one type of user</option>
+            <option value="city_official">City Offcial</option>
+            <option value="city_scientist">City Scientist</option>
+        </select>
+        <p>Note: Fill Out the form below here if you choose City Official!.</p>
+        <script type="text/javascript">
+        function showfield(name){
+        if(name=='city_official')document.getElementById('div1').innerHTML='Other: <input type="text" name="other" />';
+        else document.getElementById('div1').innerHTML='';}
+        </script>
         <button id="Create">Create</button>
 
-        <p>Note: Please make sure your details are correct before submitting form and that all fields marked with * are completed!.</p>
+
     </form>
 </div>
 </body>
