@@ -28,17 +28,27 @@
         <div class="line"><label for="email">Email *: </label><input type="email" id="email" /></div>
         <div class="line"><label for="pwd">Password *: </label><input type="password" id="pwd" /></div>
         <div class="line"><label for="cfp">Confirm Password*: </label><input type="password" id="cfp" /></div>
-        <select name="user_type">
-            <option hidden="true">Please choose one type of user</option>
-            <option value="city_official">City Offcial</option>
+        <select onchange="yesnoCheck(this);">
+            <option hidden="true">Please choose the type of user</option>
             <option value="city_scientist">City Scientist</option>
+            <option value="city_official">City Official</option>
         </select>
-        <p>Note: Fill Out the form below here if you choose City Official!.</p>
-        <script type="text/javascript">
-        function showfield(name){
-        if(name=='city_official')document.getElementById('div1').innerHTML='Other: <input type="text" name="other" />';
-        else document.getElementById('div1').innerHTML='';}
-        </script>
+
+        <div id="ifYes" style="display: none;">
+            <label for="city">City</label> <input type="text" id="city" name="city" /><br />
+            <label for="state">State</label> <input type="text" id="state" name="state" /><br />
+            <label for="title">Title</label> <input type="text" id="title" name="city" /><br />
+
+            <script>
+    function yesnoCheck(that) {
+        if (that.value == "city_official") {
+            alert("Fill Out These Text Box If You Choose City Official");
+            document.getElementById("ifYes").style.display = "block";
+        } else {
+            document.getElementById("ifYes").style.display = "none";
+        }
+    }
+</script>
         <button id="Create">Create</button>
 
 
