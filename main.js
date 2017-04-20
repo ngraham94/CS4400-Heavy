@@ -1,3 +1,4 @@
+const mysql = require('mysql');
 const electron = require('electron')
 // Module to control application life.
 const app = electron.app
@@ -20,11 +21,10 @@ function createWindow () {
     pathname: path.join(__dirname, 'index.html'),
     protocol: 'file:',
     slashes: true
-  }))
+  }));
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
-
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
     // Dereference the window object, usually you would store windows
