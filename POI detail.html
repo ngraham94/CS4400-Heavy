@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>POI detail</title>
+  <link rel="stylesheet" href="main.css" />
+</head>
+<body>
+  <h1>POI detail</h1>
+    <p>Type</p>
+    <select>
+    <option value="mold">Mold</option>
+    <option value="air quality">Air Quality</option>
+    </select>
+    <p>Data Value</p><input type = "number" min = "0" name = "min value">
+    <p>to </p><input type = "number" min = "0" name = "max value">
+    <p>Time and Date</p><input id="date" type="date"> <input type="time" name="usr_time">
+    <p>to</p><input id="date" type="date"> <input type="time" name="usr_time">
+    <br>
+    <button id="apply filter">Apply  Filter</button>
+    <TABLE BORDER="5"    WIDTH="50%"   CELLPADDING="4" CELLSPACING="3">
+     <TR>
+         <TH>Data type</TH>
+         <TH>Data value</TH>
+         <TH>Time and date of data reading</TH>
+     </TR>
+     <TR ALIGN="CENTER">
+         <TD>Data 1</TD>
+         <TD>Data 2</TD>
+         <TD>Data 3</TD>
+     </TR>
+ </TABLE>
+  <br>
+  <button id="back">Back</button>
+  <button id="flag">Flag</button>
+</body>
+</html>
