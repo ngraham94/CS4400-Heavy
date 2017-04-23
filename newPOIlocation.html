@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>New POI location</title>
+  <link rel="stylesheet" href="main.css" />
+</head>
+<body>
+  <h1>Add a new location</h1>
+    <p>POI location name:</p><input type="text" name="POI name" value="">
+	<p>City:</p>
+		<select>
+			<option value = "atlanta">Atlanta</option>
+			<option value = "duluth">Duluth</option>
+			<option value = "berkeley">Berkeley</option>
+		</select>
+	<p>State</p>
+		<select>
+			<option value = "Georgia">Georgia</option>
+			<option value = "California">California</option>
+			<option value = "Washington">Washington</option>	
+		</select>
+	<p>Zip code:</p><input>
+  <br>
+  <button id="back">Back</button>
+  <button id="submit" onclick="submit()">Submit</button>
+  <h3 id="result"></h3>
+</body>
+</html>

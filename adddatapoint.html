@@ -3,28 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <title>Hello World!</title>
+  <link rel="stylesheet" href="main.css" />
 </head>
 <body>
   <h1>Add a new data point</h1>
-  <div class="dropdown">
     <p>POI location name:</p>
-  <button onclick="myFunction()" class="dropbtn">Dropdown</button>
-  <div id="myDropdown" class="dropdown-content">
-    <a href="#">Link 1</a>
-    <a href="#">Link 2</a>
-    <a href="#">Link 3</a>
-  </div>
-</div>
-<p>Time and date of data reading:</p><input id="date" type="date">
+    <select>
+    <option value="volvo">Volvo</option>
+    <option value="saab">Saab</option>
+    <option value="mercedes">Mercedes</option>
+    <option value="audi">Audi</option>
+  </select>
+<p>Time and date of data reading:</p><input id="date" type="date"> <input type="time" name="usr_time">
   <!-- All of the Node.js APIs are available in this renderer process. -->
-  <div class="dropdown">
     <p>Data Type:</p>
-  <button onclick="myFunction()" class="dropbtn">Dropdown</button>
-  <div id="myDropdown" class="dropdown-content">
-    <a href="#">Mold</a>
-    <a href="#">Air Quality</a>
-  </div>
-</div>
+    <select>
+    <option value="volvo">Volvo</option>
+    <option value="saab">Saab</option>
+    <option value="mercedes">Mercedes</option>
+    <option value="audi">Audi</option>
+    </select>
   <p>Data Value:</p><input>
   <br>
   <button id="back">Back</button>
