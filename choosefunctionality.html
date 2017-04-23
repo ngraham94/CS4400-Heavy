@@ -1,16 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Choose Functionality</title>
-  <link rel="stylesheet" href="main.css" />
+  <style type="text/css">
+
+            body {font-family:Arial, Sans-Serif;}
+
+            #container {width:300px; margin:0 auto;}
+
+            /* Nicely lines up the labels. */
+            form label {display:inline-block; width:120px;}
+
+            form .line {clear:both;}
+            form .line.submit {text-align:right;}
+            .wrapper {
+                 text-align: center;
+            }
+
+            .button {
+                  position: absolute;
+                  top: 50%;
+            }
+
+        </style>
 </head>
 <body>
-  <h1>Choose Functionality</h1>
-    <a href="https://www.google.com" target="_self">Filter/Search POI</a>
-    <br>
-    <a href="https://www.google.com" target="_self">POI Report</a>
-    <br>
-    <button id="log out" onclick="submit()">Log out</button>
+  <h1 align = "center">Choose Functionality</h1>
+  <div class="wrapper">
+  <button align = "center" id="PendingDP" onclick="submit">Pending Data Points</button>
+  <br>
+  <button align = "center" id="PendingCOA" onclick="submit">Pending City Official Accounts</button>
+  <br>
+  <button id="log out" onclick="submit()">Log out</button>
+  </div>
 </body>
 </html>
