@@ -14,6 +14,12 @@ $('#register').click(function() {
     window.location=("register.html");
 })
 
+$('#BackLogin').click(function() {
+    alert("You clicked Back Button!");
+    window.location=("index.html");
+})
+
+
 $('#login').click(function() {
     let username = $('#username').val();
     let password = $('#password').val();
