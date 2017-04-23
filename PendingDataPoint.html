@@ -3,28 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>New POI location</title>
-    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="main.css"/>
+    <script>if (typeof module === 'object') {
+        window.module = module;
+        module = undefined;
+    }</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script>if (window.module) module = window.module;</script>
 </head>
 <body>
 <h1>Pending Data Points</h1>
-<TABLE BORDER="5"    WIDTH="50%"   CELLPADDING="4" CELLSPACING="3">
-    <TR>
-        <TH>Select</TH>
-        <TH>POI Location</TH>
-        <TH>Data Type</TH>
-        <TH>Data Value</TH>
-        <TH>TIme&Date of Data Reading</TH>
-    </TR>
-    <TR ALIGN="CENTER">
-        <TD><input type="checkbox" />    &nbsp;   </TD>
-        <TD>Data 2</TD>
-        <TD>Data 3</TD>
-        <TD>Data 4</TD>
-        <TD>Data 5</TD>
-    </TR>
-</TABLE>
-<button id="Back1">Back</button>
+<table id="pending_points_table" BORDER="5" WIDTH="50%" CELLPADDING="4" CELLSPACING="3">
+    <thead>
+        <tr>
+            <th>Select</th>
+            <th>POI Location</th>
+            <th>Data Type</th>
+            <th>Data Value</th>
+            <th>TIme&Date of Data Reading</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<button id="Back1" onclick="window.location = 'choosefunctionality.html'">Back</button>
 <button id="Reject1">Reject</button>
 <button id="Accept1">Accept</button>
+<script src="app.js"></script>
+<script>getPendingDataPoints()</script>
 </body>
 </html>

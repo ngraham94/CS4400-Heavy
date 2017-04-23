@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <script>if (typeof module === 'object') {
+      window.module = module;
+      module = undefined;
+  }</script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script>if (window.module) module = window.module;</script>
   <style type="text/css">
 
             body {font-family:Arial, Sans-Serif;}
@@ -26,11 +32,12 @@
 <body>
   <h1 align = "center">Choose Functionality</h1>
   <div class="wrapper">
-  <button align = "center" id="PendingDP" onclick="submit">Pending Data Points</button>
+  <button align = "center" id="PendingDP">Pending Data Points</button>
   <br>
-  <button align = "center" id="PendingCOA" onclick="submit">Pending City Official Accounts</button>
+  <button align = "center" id="PendingCOA">Pending City Official Accounts</button>
   <br>
-  <button id="log out" onclick="submit()">Log out</button>
+  <button id="log out" onclick="window.location = 'index.html'">Log out</button>
   </div>
+  <script src="app.js"></script>
 </body>
 </html>
