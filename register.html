@@ -28,7 +28,7 @@
         <div class="line"><label for="email">Email *: </label><input type="email" id="email" /></div>
         <div class="line"><label for="pwd">Password *: </label><input type="password" id="pwd" /></div>
         <div class="line"><label for="cfp">Confirm Password*: </label><input type="password" id="cfp" /></div>
-        <select onchange="yesnoCheck(this);">
+        <select id = "user_type" onchange="yesnoCheck(this);">
             <option hidden="true">Please choose the type of user</option>
             <option value="city_scientist">City Scientist</option>
             <option value="city_official">City Official</option>
@@ -38,8 +38,8 @@
             <label for="city">City</label> <input type="text" id="city" name="city" /><br />
             <label for="state">State</label> <input type="text" id="state" name="state" /><br />
             <label for="title">Title</label> <input type="text" id="title" name="city" /><br />
-
-            <script>
+        </div>
+        <script>
     function yesnoCheck(that) {
         if (that.value == "city_official") {
             alert("Fill Out These Text Box If You Choose City Official");
@@ -48,9 +48,9 @@
             document.getElementById("ifYes").style.display = "none";
         }
     }
-</script>
+         </script>
 
-            <button id="BackLogin" onclick="backlogin()">Back</button>
+            <button id="BackLogin" onclick="window.location = 'index.html'">Back</button>
         <button id="Create">Create</button>
 
 
