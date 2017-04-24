@@ -4,6 +4,12 @@
   <meta charset="UTF-8">
   <title>POI detail</title>
   <link rel="stylesheet" href="main.css" />
+    <script>if (typeof module === 'object') {
+        window.module = module;
+        module = undefined;
+    }</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script>if (window.module) module = window.module;</script>
 </head>
 <body>
   <h1>POI detail</h1>
@@ -17,7 +23,7 @@
     <p>Time and Date</p><input id="date" type="date"> <input type="time" name="usr_time">
     <p>to</p><input id="date" type="date"> <input type="time" name="usr_time">
     <br>
-    <button id="apply filter">Apply  Filter</button>
+    <button id="apply2">Apply  Filter</button>
     <TABLE BORDER="5"    WIDTH="50%"   CELLPADDING="4" CELLSPACING="3">
      <TR>
          <TH>Data type</TH>
@@ -33,5 +39,7 @@
   <br>
   <button id="back">Back</button>
   <button id="flag">Flag</button>
+  <script src="app.js"></script>
+  <script>getPOIdetail()</script>
 </body>
 </html>

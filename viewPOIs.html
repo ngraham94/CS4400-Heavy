@@ -4,35 +4,31 @@
   <meta charset="UTF-8">
   <title>View POIs</title>
   <link rel="stylesheet" href="main.css" />
+    <script>if (typeof module === 'object') {
+        window.module = module;
+        module = undefined;
+    }</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script>if (window.module) module = window.module;</script>
 </head>
 <body>
   <h1>View POIs</h1>
-    <p>POI location name</p>
-    <select>
-    <option value="volvo">Volvo</option>
-    <option value="saab">Saab</option>
-    <option value="mercedes">Mercedes</option>
-    <option value="audi">Audi</option>
+    <p id = "POILN">POI location name</p>
+    <select id = "POIN">
     </select>
-    <p>City</p>
-    <select>
-    <option value = "atlanta">Atlanta</option>
-    <option value = "duluth">Duluth</option>
-    <option value = "berkeley">Berkeley</option>
+    <p id = "city">City</p>
+    <select id = "city2">
     </select>
-    <p>State</p>
-    <select>
-    <option value = "Georgia">Georgia</option>
-    <option value = "California">California</option>
-    <option value = "Washington">Washington</option>  
+    <p id = "state">State</p>
+    <select id = "state2">
     </select>
-    <p>Zip code:</p><input>
+    <p id = "zipcode">Zip code:</p><input>
     <p>Flagged?</p><input id="checkBox" type="checkbox">
-    <p>Data Flagged</p><input id="date" type="date"> <input type="time" name="usr_time">
-    <p>to</p><input id="date" type="date"> <input type="time" name="usr_time">
+    <p>Data Flagged</p><input id="date1" type="date"> <input type="time" name="usr_time">
+    <p>to</p><input id="date2" type="date"> <input type="time" name="usr_time">
     <br>
-    <button id="apply filter">Apply Filter</button>
-    <button id="reset filter">Reset Filter</button>
+    <button id="apply1">Apply Filter</button>
+    <button id="reset1">Reset Filter</button>
     <TABLE BORDER="5"    WIDTH="50%"   CELLPADDING="4" CELLSPACING="3">
      <TR>
          <TH>Location Name</TH>
@@ -53,5 +49,7 @@
  </TABLE>
     <br>
     <button id="back">Back</button>
+  <script src="app.js"></script>
+  <script>viewPOIs()</script>
 </body>
 </html>
