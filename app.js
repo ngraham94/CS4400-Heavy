@@ -12,8 +12,23 @@ connection.connect();
 
 $('#register').click(function () {
     alert("You clicked Register!");
-    connection.close();
+    //connection.close();
     window.location = ("register.html");
+        let row;
+        let query = "SELECT * FROM CITYSTATE;";
+        console.log("sending query...\n" + query);
+        connection.query(query, function (error, results, fields) {
+            if (error) throw error;
+            if (results.length == 0) {
+                alert("No pending officials found.");
+            } else {
+                for (i of results) {
+                    $('#city0').append('<option>' + i.city + '</option>')
+                    $('#state0').append('<option>' + i.state + '</option>');
+                }
+            }
+        });
+
 })
 
 $('#BackLogin').click(function () {
@@ -62,12 +77,14 @@ $('#Create').click(function() {
     let password = $('#pwd').val();
     let user_type = $('#user_type')
     //This block of code when you want to perfrom a query-------------------------------------------------------------------
-    let query = "INSERT INTO USER ('email_address', 'username', 'password', 'user_type')\n" +
-    "VALUES ('email', 'username', 'password', 'user_type');";
-    console.log("sending query...\n" + query);
-    connection.query(query, function (error, results, fields) {
+    var record = {'email', 'username', 'password', 'user_type'};
+    //let query = "INSERT INTO USER ('email_address', 'username', 'password', 'user_type')\n" +
+    //"VALUES (email, username, password, user_type);";
+    //console.log("sending query...\n" + query);
+    connection.query('INSERT INTO USER ('email_address', 'username', 'password', 'user_type') VALUES?', record, function (error, results){
         if (error) throw error;
         else {
+        alert("Register Successful");
         switch(user_type) {
                             case "admin":
                                 window.location=("choosefunctionality.html");
