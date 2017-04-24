@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>POI detail</title>
-  <link rel="stylesheet" href="main.css" />
+    <meta charset="UTF-8">
+    <title>POI detail</title>
+    <link rel="stylesheet" href="main.css"/>
     <script>if (typeof module === 'object') {
         window.module = module;
         module = undefined;
@@ -12,34 +12,35 @@
     <script>if (window.module) module = window.module;</script>
 </head>
 <body>
-  <h1>POI detail</h1>
-    <p>Type</p>
-    <select>
+<h1>POI detail</h1>
+<p>Type</p>
+<select id="data_type">
+    <option></option>
     <option value="mold">Mold</option>
     <option value="air quality">Air Quality</option>
-    </select>
-    <p>Data Value</p><input type = "number" min = "0" name = "min value">
-    <p>to </p><input type = "number" min = "0" name = "max value">
-    <p>Time and Date</p><input id="date" type="date"> <input type="time" name="usr_time">
-    <p>to</p><input id="date" type="date"> <input type="time" name="usr_time">
-    <br>
-    <button id="apply2">Apply  Filter</button>
-    <TABLE BORDER="5"    WIDTH="50%"   CELLPADDING="4" CELLSPACING="3">
-     <TR>
-         <TH>Data type</TH>
-         <TH>Data value</TH>
-         <TH>Time and date of data reading</TH>
-     </TR>
-     <TR ALIGN="CENTER">
-         <TD>Data 1</TD>
-         <TD>Data 2</TD>
-         <TD>Data 3</TD>
-     </TR>
- </TABLE>
-  <br>
-  <button id="back">Back</button>
-  <button id="flag">Flag</button>
-  <script src="app.js"></script>
-  <script>getPOIdetail()</script>
+</select>
+<p>Data Value</p><input type="number" min="0" id="min_value">
+<p>to </p><input type="number" min="0" id="max_value">
+<p>Time and Date</p><input id="date_min" type="date">
+<p>to</p><input id="date_max" type="date">
+<br>
+<button id="apply2">Apply Filter</button>
+<TABLE id="poi_detail_table" BORDER="5" WIDTH="50%" CELLPADDING="4" CELLSPACING="3">
+    <thead>
+    <TR>
+        <TH>Data type</TH>
+        <TH>Data value</TH>
+        <TH>Time and date of data reading</TH>
+    </TR>
+    </thead>
+    <tbody>
+
+    </tbody>
+</TABLE>
+<br>
+<button id="back" onclick="window.location='viewPOIs.html'">Back</button>
+<button id="flag">Flag</button>
+<script src="app.js"></script>
+<script>getPOIdetail()</script>
 </body>
 </html>

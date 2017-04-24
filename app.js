@@ -1,52 +1,52 @@
 const mysql = require('mysql');
 
 const connection = mysql.createConnection({
-    host     : 'academic-mysql.cc.gatech.edu',
-    user     : 'cs4400_71',
-    password : 'Je29H2sc',
-    database : 'cs4400_71',
-    dateStrings : 'true'
+    host: 'academic-mysql.cc.gatech.edu',
+    user: 'cs4400_71',
+    password: 'Je29H2sc',
+    database: 'cs4400_71',
+    dateStrings: 'true'
 });
 
 connection.connect();
 
-$('#register').click(function() {
+$('#register').click(function () {
     alert("You clicked Register!");
     connection.close();
-    window.location=("register.html");
+    window.location = ("register.html");
 })
 
-$('#BackLogin').click(function() {
+$('#BackLogin').click(function () {
     connection.close();
-    window.location=("index.html");
+    window.location = ("index.html");
 })
 
 
-$('#login').click(function() {
+$('#login').click(function () {
     let username = $('#username').val();
     let password = $('#password').val();
     //This block of code when you want to perfrom a query-------------------------------------------------------------------
     let query = "SELECT u.username, u.password, u.user_type FROM USER as u\n" +
-            "WHERE u.username=\'" + username + "\'\n" +
-            "AND u.password=\'" + password + "\';";
+        "WHERE u.username=\'" + username + "\'\n" +
+        "AND u.password=\'" + password + "\';";
     console.log("sending query...\n" + query);
     connection.query(query, function (error, results, fields) {
         if (error) throw error;
-        if(results.length == 0) {
+        if (results.length == 0) {
             alert("Invalid credentials");
         } else {
             if (username = results[0].username && password == results[0].password) {
                 alert("Login success!");
                 user_type = results[0].user_type;
-                switch(user_type) {
+                switch (user_type) {
                     case "admin":
-                        window.location=("choosefunctionality.html");   //admin funcitonality
+                        window.location = ("choosefunctionality.html");   //admin funcitonality
                         break;
                     case "city officials":
-                        window.location=("COchooseFunctionality.html"); //city official functionality
+                        window.location = ("COchooseFunctionality.html"); //city official functionality
                         break;
                     case "city scientists":
-                        window.location=("adddatapoint.html");
+                        window.location = ("adddatapoint.html");
                         break;
                 }
 
@@ -59,25 +59,25 @@ $('#login').click(function() {
 //Admin functionality code begins here----------------------------------------------------------------------------------
 
 
-$('#PendingDP').click(function() {
+$('#PendingDP').click(function () {
     window.location = "PendingDataPoint.html";
 });
 
-$('#PendingCOA').click(function() {
+$('#PendingCOA').click(function () {
     window.location = "PendingCOFAccount.html";
 });
 
 function getPendingCityOfficials() {
     let row;
     let query = "SELECT * FROM CITY_OFFICIAL AS o\n" +
-    "WHERE o.approved IS NULL;";
+        "WHERE o.approved IS NULL;";
     console.log("sending query...\n" + query);
     connection.query(query, function (error, results, fields) {
         if (error) throw error;
-        if(results.length == 0) {
+        if (results.length == 0) {
             alert("No pending officials found.");
         } else {
-            for(i of results) {
+            for (i of results) {
                 row = '<tr>'
                 row += '<td><input type="checkbox"/> &nbsp;</td>';
                 row += '<td>' + i.username + '</td>';
@@ -120,180 +120,361 @@ function getPendingDataPoints() {
     });
 }
 
-    $('#Accept1').click(function() {
-        let query ;
-        let selected_row = $("input:checked").closest('tr');
-        for (r of selected_row) {
-            var date = r.cells[4].innerHTML.toString();
-            date.replace(/T/g, " ");
-            date.replace(/Z/g, "");
-            query = "UPDATE DATA_POINT\n" +
+$('#Accept1').click(function () {
+    let query;
+    let selected_row = $("input:checked").closest('tr');
+    for (r of selected_row) {
+        var date = r.cells[4].innerHTML.toString();
+        date.replace(/T/g, " ");
+        date.replace(/Z/g, "");
+        query = "UPDATE DATA_POINT\n" +
             "SET `Accepted` = 1\n" +
             "WHERE `LocationName` = '" + r.cells[1].innerHTML + "'\n" +
             "AND `DateTime` = '" + date + "';";
 
-            console.log(query);
-            connection.query(query, function (error, results, fields) {
-                if (error) throw error;
-                else {console.log(results)};
-            })
-        }
-        window.location = "PendingDataPoint.html;"
-    });
+        console.log(query);
+        connection.query(query, function (error, results, fields) {
+            if (error) throw error;
+            else {
+                console.log(results)
+            }
+            ;
+        })
+    }
+    window.location = "PendingDataPoint.html;"
+});
 
-    $('#Reject1').click(function() {
-        let query ;
-        let selected_row = $("input:checked").closest('tr');
-        for (r of selected_row) {
-            var date = r.cells[4].innerHTML.toString();
-            date.replace(/T/g, " ");
-            date.replace(/Z/g, "");
-            query = "UPDATE DATA_POINT\n" +
-                "SET `Accepted` = 0\n" +
-                "WHERE `LocationName` = '" + r.cells[1].innerHTML + "'\n" +
-                "AND `DateTime` = '" + date + "';";
+$('#Reject1').click(function () {
+    let query;
+    let selected_row = $("input:checked").closest('tr');
+    for (r of selected_row) {
+        var date = r.cells[4].innerHTML.toString();
+        date.replace(/T/g, " ");
+        date.replace(/Z/g, "");
+        query = "UPDATE DATA_POINT\n" +
+            "SET `Accepted` = 0\n" +
+            "WHERE `LocationName` = '" + r.cells[1].innerHTML + "'\n" +
+            "AND `DateTime` = '" + date + "';";
 
-            console.log(query);
-            connection.query(query, function (error, results, fields) {
-                if (error) throw error;
-                else {console.log(results)};
-            })
-        }
-        window.location = "PendingDataPoint.html;"
-    });
+        console.log(query);
+        connection.query(query, function (error, results, fields) {
+            if (error) throw error;
+            else {
+                console.log(results)
+            }
+            ;
+        })
+    }
+    window.location = "PendingDataPoint.html;"
+});
 
-    $('#Accept2').click(function() {
-        console.log("clicked");
-        let query ;
-        let selected_row = $("input:checked").closest('tr');
-        for (r of selected_row) {
-            query = "UPDATE CITY_OFFICIAL\n" +
-                "SET `approved` = 1\n" +
-                "WHERE `username` = '" + r.cells[1].innerHTML + "';";
+$('#Accept2').click(function () {
+    console.log("clicked");
+    let query;
+    let selected_row = $("input:checked").closest('tr');
+    for (r of selected_row) {
+        query = "UPDATE CITY_OFFICIAL\n" +
+            "SET `approved` = 1\n" +
+            "WHERE `username` = '" + r.cells[1].innerHTML + "';";
 
-            console.log(query);
-            connection.query(query, function (error, results, fields) {
-                if (error) throw error;
-                else {console.log(results)};
-            })
-        }
-        window.location = "PendingCOFAccount.html"
-    });
+        console.log(query);
+        connection.query(query, function (error, results, fields) {
+            if (error) throw error;
+            else {
+                console.log(results)
+            }
+            ;
+        })
+    }
+    window.location = "PendingCOFAccount.html"
+});
 
-    $('#Reject2').click(function() {
-        let query ;
-        let selected_row = $("input:checked").closest('tr');
-        for (r of selected_row) {
-            query = "UPDATE CITY_OFFICIAL\n" +
-                "SET `approved` = 0\n" +
-                "WHERE `username` = '" + r.cells[1].innerHTML + "';";
+$('#Reject2').click(function () {
+    let query;
+    let selected_row = $("input:checked").closest('tr');
+    for (r of selected_row) {
+        query = "UPDATE CITY_OFFICIAL\n" +
+            "SET `approved` = 0\n" +
+            "WHERE `username` = '" + r.cells[1].innerHTML + "';";
 
-            console.log(query);
-            connection.query(query, function (error, results, fields) {
-                if (error) throw error;
-                else {console.log(results)};
-            })
-        }
-        window.location = "PendingCOFAccount.html"
-    });
+        console.log(query);
+        connection.query(query, function (error, results, fields) {
+            if (error) throw error;
+            else {
+                console.log(results)
+            }
+            ;
+        })
+    }
+    window.location = "PendingCOFAccount.html"
+});
 
-    function getPOIReport() {
-        let rows = [];
-        let row;
-        let query = "SELECT p.LocationName, q.City, q.State, MIN( p.Mold ) AS MoldMin, AVG( p.Mold ) AS MoldAvg, MAX( p.Mold ) AS MoldMax, MIN( p.AQ ) AS AQMin, AVG( p.AQ ) AS AQAvg, MAX( p.AQ ) AS AQMax, COUNT( p.LocationName ) AS num_points, CASE Max(p.Flag)\n"+
+function getPOIReport() {
+    let rows = [];
+    let row;
+    let query = "SELECT p.LocationName, q.City, q.State, MIN( p.Mold ) AS MoldMin, AVG( p.Mold ) AS MoldAvg, MAX( p.Mold ) AS MoldMax, MIN( p.AQ ) AS AQMin, AVG( p.AQ ) AS AQAvg, MAX( p.AQ ) AS AQMax, COUNT( p.LocationName ) AS num_points, CASE Max(p.Flag)\n" +
         "WHEN 1 THEN 'Yes'\n" +
         "ELSE 'No' END as Flagged\n" +
-        "FROM (\n"+
+        "FROM (\n" +
         "    SELECT * ,\n" +
         "    CASE WHEN TYPE = 'Mold'\n" +
         "THEN DataValue\n" +
         "END AS  'Mold',\n" +
-            "CASE WHEN TYPE = 'Air Quality'\n" +
+        "CASE WHEN TYPE = 'Air Quality'\n" +
         "THEN DataValue\n" +
         "END AS 'AQ'\n" +
-        "FROM DATA_POINT\n"+
-        ") AS p\n"+
-        "    LEFT JOIN POI AS q ON p.LocationName = q.LocationName\n"+
+        "FROM DATA_POINT\n" +
+        ") AS p\n" +
+        "    LEFT JOIN POI AS q ON p.LocationName = q.LocationName\n" +
         "    GROUP BY p.LocationName;";
-        connection.query(query, function (error, results, fields) {
-            if (error) throw error;
-            else {
-                for (result of results) {
-                    row = []
-                    row.push(result.LocationName);
-                    row.push(result.City);
-                    row.push(result.State);
-                    row.push(result.MoldMin);
-                    row.push(result.MoldAvg);
-                    row.push(result.MoldMax);
-                    row.push(result.AQMin);
-                    row.push(result.AQAvg);
-                    row.push(result.AQMax);
-                    row.push(result.num_points);
-                    row.push(result.Flagged);
-                    rows.push(row);
-                }
-                $('#POIReport').DataTable({
-                    data:rows
-                });
-            };
-        });
-
-
-    }
-
-
-
- /*  $('#apply1').click(function() {
-       let POIlocation = $('#POILN').val();
-       let city = $('#city').val();
-       let state = $('#state').val();
-       let zipcode = $('#zipcode').val();
-       let date1 = $('#date1').val();
-       let date2 = $('#date2').val();
-       //let selected_flag = $("input:checked").closest('p');
-       //This block of code when you want to perfrom a query-------------------------------------------------------------------
-       let query = "SELECT * FROM POI as p\n" +
-               "WHERE p.LocationName = a.Name\n'" + POIlocation + "\'\n" +
-               "AND p.city = a_city\'" + city + "\'\n" +
-               "AND p.state = a_state\'" + state + "\'\n" +
-               "AND p.zipcode = a_zip\'" + zipcode + "\'\n" +
-               "AND p.DateFlagged BETWEEN 'min_val' and 'max_val' \'" + "\';";
-       console.log("sending query...\n" + query);
-       connection.query(query, function (error, results, fields) {
+    connection.query(query, function (error, results, fields) {
         if (error) throw error;
-        else {console.log(results)};
-        for (r of selected_row) {
-            query = "UPDATE CITY_OFFICIAL\n" +
-                "SET `approved` = 1\n" +
-                "WHERE `username` = '" + r.cells[1].innerHTML + "';";
-
-            console.log(query);
-            connection.query(query, function (error, results, fields) {
-                if (error) throw error;
-                else {console.log(results)};
-            })
-        }
-        window.location = "viewPOIs.html"
-    }); */
-
-    function viewPOIs() {
-        let row;
-        let query = "SELECT * FROM CITY_STATE\n";
-        console.log("sending query...\n" + query);
-        connection.query(query, function (error, results, fields) {
-            if (error) throw error;
-            if(results.length == 0) {
-                alert("No pending officials found.");
-            } else {
-                for(i of results) {
-                    row = '<select>'
-                    row += '<option>' + i.state + '</td>';
-                    row += '</select>';
-                    $('#state_option').append(row);
-
-                }
-                console.log(results);
+        else {
+            for (result of results) {
+                row = []
+                row.push(result.LocationName);
+                row.push(result.City);
+                row.push(result.State);
+                row.push(result.MoldMin);
+                row.push(result.MoldAvg);
+                row.push(result.MoldMax);
+                row.push(result.AQMin);
+                row.push(result.AQAvg);
+                row.push(result.AQMax);
+                row.push(result.num_points);
+                row.push(result.Flagged);
+                rows.push(row);
             }
-        });
+            $('#POIReport').DataTable({
+                data: rows
+            });
+        }
+        ;
+    });
+
+
+}
+
+
+$('#apply1').click(function () {
+    $('#filter_search_table>tbody').empty();
+    let POIlocation = $('#POIN').val();
+    let city1 = $('#city2').find(":selected").text();
+    let state1 = $('#state2').find(":selected").text();
+    let zipcode1 = $('#zipcode2').val();
+    let date1 = $('#date1').val();
+    let date2 = $('#date2').val();
+    let flag;
+    if (document.getElementById('checkBox').checked) {
+        flag = 1
+    } else {
+        flag = 0;
     }
+    //This block of code when you want to perfrom a query-------------------------------------------------------------------
+    let query = "SELECT * FROM POI as p\n" +
+        "WHERE 1;";
+    if (POIlocation != "") {
+        query += "AND p.LocationName = \n'" + POIlocation + "\'\n";
+    }
+    if (city1 != "") {
+        query += "AND p.city = \'" + city1 + "\'\n";
+    }
+    if (state1 != "") {
+        query += "AND p.state = \'" + state1 + "\'\n";
+    }
+    if (zipcode1 != "") {
+        query += "AND p.zipcode = \'" + zipcode1 + "\'\n";
+    }
+    if (flag != 0) {
+        query += "AND p.Flag = 1\n"
+    }
+    if (date1 != "" && date2 != "") {
+        query += "AND p.DateFlagged BETWEEN '" + date1 + "' and '" + date2 + "';";
+    }
+    let row;
+    console.log("sending query...\n" + query);
+    connection.query(query, function (error, results, fields) {
+        if (error) throw error;
+        else {
+            if (results.length == 0) {
+                alert("No Results Found");
+            }
+            for (j of results) {
+                row = '<tr class="poi_val">'
+                row += '<td>' + j.LocationName + '</td>';
+                row += '<td>' + j.City + '</td>';
+                row += '<td>' + j.State + '</td>';
+                row += '<td>' + j.ZipCode + '</td>';
+                row += '<td>' + j.Flag + '</td>';
+                row += '<td>' + j.DateFlagged + '</td>';
+                row += '</tr>';
+                $('#filter_search_table').append(row);
+            }
+        }
+        ;
+    });
+})
+
+function viewPOIs() {
+    let row;
+    let query = "SELECT * FROM CITYSTATE;";
+    console.log("sending query...\n" + query);
+    connection.query(query, function (error, results, fields) {
+        if (error) throw error;
+        if (results.length == 0) {
+            alert("No pending officials found.");
+        } else {
+            for (i of results) {
+                $('#city2').append('<option>' + i.city + '</option>')
+                $('#state2').append('<option>' + i.state + '</option>');
+            }
+        }
+    });
+    query = "SELECT LocationName FROM POI\n";
+    connection.query(query, function (error, results, fields) {
+        if (error) throw error;
+        if (results.length == 0) {
+            alert("No pending officials found.");
+        } else {
+            for (i of results) {
+                $('#POIN').append('<option>' + i.LocationName + '</option>')
+            }
+        }
+    });
+    query = "SELECT * FROM POI as p\n" +
+        "WHERE 1;";
+    connection.query(query, function (error, results, fields) {
+        if (error) throw error;
+        else {
+            if (results.length == 0) {
+                alert("No Results Found");
+            }
+            for (j of results) {
+                row = "<tr class='poi_val'>";
+                row += "<td><button class='poi_select'>View Details</button></td>";
+                row += '<td>' + j.LocationName + '</td>';
+                row += '<td>' + j.City + '</td>';
+                row += '<td>' + j.State + '</td>';
+                row += '<td>' + j.ZipCode + '</td>';
+                if (j.Flag == 1) {
+                    row += '<td>Yes</td>';
+                } else {
+                    row += '<td>No</td>';
+                }
+                row += '<td>' + j.DateFlagged + '</td>';
+                row += '</tr>';
+                $('#filter_search_table').append(row);
+            }
+        }
+
+    });
+
+}
+$('#reset1').click(function () {
+    $('#filter_search_table>tbody').empty();
+    let row;
+    console.log(this.id);
+    let query = "SELECT * FROM POI as p\n" +
+        "WHERE 1\n";
+    connection.query(query, function (error, results, fields) {
+        if (error) throw error;
+        else {
+            if (results.length == 0) {
+                alert("No Results Found");
+            }
+            for (j of results) {
+                row = "<tr>";
+                row += "<td><button class='poi_select' onclick='getLocationData()'>View Details</button></td>";
+                row += '<td>' + j.LocationName + '</td>';
+                row += '<td>' + j.City + '</td>';
+                row += '<td>' + j.State + '</td>';
+                row += '<td>' + j.ZipCode + '</td>';
+                if (j.Flag == 1) {
+                    row += '<td>Yes</td>';
+                } else {
+                    row += '<td>No</td>';
+                }
+                row += '<td>' + j.DateFlagged + '</td>';
+                row += '</tr>';
+                $('#filter_search_table').append(row);
+            }
+        }
+    })
+});
+$('#filter_search_table').on('click', '.poi_select', function(){
+    let tr = $(this).closest('tr');
+    sessionStorage.setItem("currentPOI", tr[0].cells[1].innerHTML);
+    window.location = 'POI detail.html';
+});
+
+function getPOIdetail(){
+    let poi = sessionStorage.getItem("currentPOI");
+    console.log(poi);
+    let query = "SELECT d.Type,d.DataValue, d.DateTime\n" +
+    "FROM DATA_POINT as d\n" +
+    "WHERE d.LocationName = '" + poi + "';";
+    connection.query(query, function (error, results, fields) {
+        if (error) throw error;
+        else {
+            if (results.length == 0) {
+                alert("No Results Found");
+            }
+            for (j of results) {
+                row = '<tr class="poi_val">'
+                row += '<td>' + j.Type + '</td>';
+                row += '<td>' + j.DataValue + '</td>';
+                row += '<td>' + j.DateTime + '</td>';
+                row += '</tr>';
+                $('#poi_detail_table').append(row);
+            }
+        }
+        ;
+    });
+
+}
+
+$('#apply2').click(function () {
+    let poi = sessionStorage.getItem("currentPOI");
+    $('#poi_detail_table>tbody').empty();
+    let minData = $('#min_value').val();
+    let maxData = $('#max_value').val();
+    let minDate = $('#date_min').val();
+    let maxDate = $('#date_max').val();
+    let dataType = $('#data_type').find(":selected").text();
+
+    //This block of code when you want to perfrom a query-------------------------------------------------------------------
+    let query = "SELECT d.Type,d.DataValue, d.DateTime FROM DATA_POINT as d\n" +
+        "WHERE 1\n";
+    if (poi != "") {
+        query += "AND d.LocationName = '" + poi + "'\n";
+    }
+    if (dataType != "") {
+        query += "AND d.Type = \'" + dataType + "\'\n";
+    }
+    if (minData != "" && maxData != "") {
+        query += "AND d.DataValue BETWEEN " + minData + " and " + maxData + "\n";
+    }
+    if (minDate != "" && maxDate != "") {
+        query += "AND d.DateTime BETWEEN '" + minDate + "' and '" + maxDate + "';";
+    }
+    let row;
+    console.log("sending query...\n" + query);
+    connection.query(query, function (error, results, fields) {
+        if (error) throw error;
+        else {
+            if (results.length == 0) {
+                alert("No Results Found");
+            }
+            for (j of results) {
+                row = '<tr class="poi_val">'
+                row += '<td>' + j.Type + '</td>';
+                row += '<td>' + j.DataValue + '</td>';
+                row += '<td>' + j.DateTime + '</td>';
+                row += '</tr>';
+                $('#poi_detail_table').append(row);
+            }
+        }
+        ;
+    });
+})
+

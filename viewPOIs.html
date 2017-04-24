@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>View POIs</title>
-  <link rel="stylesheet" href="main.css" />
+    <meta charset="UTF-8">
+    <title>View POIs</title>
+    <link rel="stylesheet" href="main.css"/>
     <script>if (typeof module === 'object') {
         window.module = module;
         module = undefined;
@@ -12,44 +12,44 @@
     <script>if (window.module) module = window.module;</script>
 </head>
 <body>
-  <h1>View POIs</h1>
-    <p id = "POILN">POI location name</p>
-    <select id = "POIN">
-    </select>
-    <p id = "city">City</p>
-    <select id = "city2">
-    </select>
-    <p id = "state">State</p>
-    <select id = "state2">
-    </select>
-    <p id = "zipcode">Zip code:</p><input>
-    <p>Flagged?</p><input id="checkBox" type="checkbox">
-    <p>Data Flagged</p><input id="date1" type="date"> <input type="time" name="usr_time">
-    <p>to</p><input id="date2" type="date"> <input type="time" name="usr_time">
-    <br>
-    <button id="apply1">Apply Filter</button>
-    <button id="reset1">Reset Filter</button>
-    <TABLE BORDER="5"    WIDTH="50%"   CELLPADDING="4" CELLSPACING="3">
-     <TR>
-         <TH>Location Name</TH>
-         <TH>City</TH>
-         <TH>State</TH>
-         <TH>Zip Code</TH>
-         <TH>Flagged?</TH>
-         <TH>Data Flagged</TH>
-     </TR>
-     <TR ALIGN="CENTER">
-         <TD>Data 1</TD>
-         <TD>Data 2</TD>
-         <TD>Data 3</TD>
-         <TD>Data 4</TD>
-         <TD>Data 5</TD>
-         <TD>Data 6</TD>
-     </TR>
- </TABLE>
-    <br>
-    <button id="back">Back</button>
-  <script src="app.js"></script>
-  <script>viewPOIs()</script>
+<h1>View POIs</h1>
+<p id="POILN">POI location name</p>
+<select id="POIN">
+    <option></option>
+</select>
+<p id="city">City</p>
+<select id="city2">
+    <option></option>
+</select>
+<p id="state">State</p>
+<select id="state2">
+    <option></option>
+</select>
+<p id="zipcode">Zip code:</p><input id="zipcode2">
+<p>Flagged?</p><input id="checkBox" type="checkbox">
+<p>Date Flagged</p><input id="date1" type="date">
+<p>to</p><input id="date2" type="date">
+<br>
+<button id="apply1">Apply Filter</button>
+<button id="reset1">Reset Filter</button>
+<TABLE id="filter_search_table" BORDER="5" WIDTH="50%" CELLPADDING="4" CELLSPACING="3">
+    <thead>
+    <TR>
+        <th>View Details</th>
+        <TH>Location Name</TH>
+        <TH>City</TH>
+        <TH>State</TH>
+        <TH>Zip Code</TH>
+        <TH>Flagged?</TH>
+        <TH>Date Flagged</TH>
+    </TR>
+    </thead>
+    <tbody>
+    </tbody>
+</TABLE>
+<br>
+<button id="back" onclick="window.location = 'COchooseFunctionality.html'">Back</button>
+<script src="app.js"></script>
+<script>viewPOIs()</script>
 </body>
 </html>
