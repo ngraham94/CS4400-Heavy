@@ -115,7 +115,6 @@ function getPendingDataPoints() {
                 row += '<td>' + i.DateTime + '</td>';
                 row += '</tr>';
                 $('#pending_points_table').append(row);
-
             }
         }
     });
@@ -244,3 +243,57 @@ function getPendingDataPoints() {
     }
 
 
+
+ /*  $('#apply1').click(function() {
+       let POIlocation = $('#POILN').val();
+       let city = $('#city').val();
+       let state = $('#state').val();
+       let zipcode = $('#zipcode').val();
+       let date1 = $('#date1').val();
+       let date2 = $('#date2').val();
+       //let selected_flag = $("input:checked").closest('p');
+       //This block of code when you want to perfrom a query-------------------------------------------------------------------
+       let query = "SELECT * FROM POI as p\n" +
+               "WHERE p.LocationName = a.Name\n'" + POIlocation + "\'\n" +
+               "AND p.city = a_city\'" + city + "\'\n" +
+               "AND p.state = a_state\'" + state + "\'\n" +
+               "AND p.zipcode = a_zip\'" + zipcode + "\'\n" +
+               "AND p.DateFlagged BETWEEN 'min_val' and 'max_val' \'" + "\';";
+       console.log("sending query...\n" + query);
+       connection.query(query, function (error, results, fields) {
+        if (error) throw error;
+        else {console.log(results)};
+        for (r of selected_row) {
+            query = "UPDATE CITY_OFFICIAL\n" +
+                "SET `approved` = 1\n" +
+                "WHERE `username` = '" + r.cells[1].innerHTML + "';";
+
+            console.log(query);
+            connection.query(query, function (error, results, fields) {
+                if (error) throw error;
+                else {console.log(results)};
+            })
+        }
+        window.location = "viewPOIs.html"
+    }); */
+
+    function viewPOIs() {
+        let row;
+        let query = "SELECT * FROM CITY_STATE\n";
+        console.log("sending query...\n" + query);
+        connection.query(query, function (error, results, fields) {
+            if (error) throw error;
+            if(results.length == 0) {
+                alert("No pending officials found.");
+            } else {
+                for(i of results) {
+                    row = '<select>'
+                    row += '<option>' + i.state + '</td>';
+                    row += '</select>';
+                    $('#state_option').append(row);
+
+                }
+                console.log(results);
+            }
+        });
+    }
