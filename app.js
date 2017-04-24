@@ -56,6 +56,35 @@ $('#login').click(function() {
 //----------------------------------------------------------------------------------------------------------------------
 })
 
+$('#Create').click(function() {
+    let username = $('#username').val();
+    let email    = $('#email').val();
+    let password = $('#pwd').val();
+    let user_type = $('#user_type')
+    //This block of code when you want to perfrom a query-------------------------------------------------------------------
+    let query = "INSERT INTO USER ('email_address', 'username', 'password', 'user_type')\n" +
+    "VALUES ('email', 'username', 'password', 'user_type');";
+    console.log("sending query...\n" + query);
+    connection.query(query, function (error, results, fields) {
+        if (error) throw error;
+        else {
+        switch(user_type) {
+                            case "admin":
+                                window.location=("choosefunctionality.html");
+                                break;
+                            case "city officials":
+                                window.location=("COchooseFunctionality.html");
+                                break;
+                            case "city scientists":
+                                console.log("city_scientist");
+                                break;
+                        }
+        }
+
+    });
+//----------------------------------------------------------------------------------------------------------------------
+})
+
 //Admin functionality code begins here----------------------------------------------------------------------------------
 
 
@@ -243,7 +272,7 @@ function getPendingDataPoints() {
                     row = '<select>'
                     row += '<option>' + i.state + '</td>';
                     row += '</select>';
-                    $('#state_option').append(row);
+                    $('#state2').append(row);
 
                 }
                 console.log(results);
