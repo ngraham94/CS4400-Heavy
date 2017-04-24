@@ -40,13 +40,13 @@ $('#login').click(function() {
                 user_type = results[0].user_type;
                 switch(user_type) {
                     case "admin":
-                        window.location=("choosefunctionality.html");
+                        window.location=("choosefunctionality.html");   //admin funcitonality
                         break;
                     case "city officials":
-                        window.location=("COchooseFunctionality.html");
+                        window.location=("COchooseFunctionality.html"); //city official functionality
                         break;
                     case "city scientists":
-                        console.log("city_scientist");
+                        window.location=("adddatapoint.html");
                         break;
                 }
 
@@ -197,3 +197,50 @@ function getPendingDataPoints() {
         }
         window.location = "PendingCOFAccount.html"
     });
+
+    function getPOIReport() {
+        let rows = [];
+        let row;
+        let query = "SELECT p.LocationName, q.City, q.State, MIN( p.Mold ) AS MoldMin, AVG( p.Mold ) AS MoldAvg, MAX( p.Mold ) AS MoldMax, MIN( p.AQ ) AS AQMin, AVG( p.AQ ) AS AQAvg, MAX( p.AQ ) AS AQMax, COUNT( p.LocationName ) AS num_points, CASE Max(p.Flag)\n"+
+        "WHEN 1 THEN 'Yes'\n" +
+        "ELSE 'No' END as Flagged\n" +
+        "FROM (\n"+
+        "    SELECT * ,\n" +
+        "    CASE WHEN TYPE = 'Mold'\n" +
+        "THEN DataValue\n" +
+        "END AS  'Mold',\n" +
+            "CASE WHEN TYPE = 'Air Quality'\n" +
+        "THEN DataValue\n" +
+        "END AS 'AQ'\n" +
+        "FROM DATA_POINT\n"+
+        ") AS p\n"+
+        "    LEFT JOIN POI AS q ON p.LocationName = q.LocationName\n"+
+        "    GROUP BY p.LocationName;";
+        connection.query(query, function (error, results, fields) {
+            if (error) throw error;
+            else {
+                for (result of results) {
+                    row = []
+                    row.push(result.LocationName);
+                    row.push(result.City);
+                    row.push(result.State);
+                    row.push(result.MoldMin);
+                    row.push(result.MoldAvg);
+                    row.push(result.MoldMax);
+                    row.push(result.AQMin);
+                    row.push(result.AQAvg);
+                    row.push(result.AQMax);
+                    row.push(result.num_points);
+                    row.push(result.Flagged);
+                    rows.push(row);
+                }
+                $('#POIReport').DataTable({
+                    data:rows
+                });
+            };
+        });
+
+
+    }
+
+

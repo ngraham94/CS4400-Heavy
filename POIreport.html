@@ -3,38 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <title>New POI location</title>
+    <script>if (typeof module === 'object') {
+        window.module = module;
+        module = undefined;
+    }</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script>if (window.module) module = window.module;</script>
     <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css"/>
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 </head>
 <body>
 <h1>POI Reports</h1>
-<TABLE BORDER="5"    WIDTH="50%"   CELLPADDING="4" CELLSPACING="3">
-    <TR>
-        <TH>POI location</TH>
-        <TH>City</TH>
-        <TH>State</TH>
-        <TH>Mold Min</TH>
-        <TH>Mold Avg</TH>
-        <TH>Mold Max</TH>
-        <TH>AQ Min</TH>
-        <TH>AQ Avg</TH>
-        <TH>AQ Max</TH>
-        <TH>#of data points</TH>
-        <TH>Flagged?</TH>
-    </TR>
-    <TR ALIGN="CENTER">
-        <TD>Data 1</TD>
-        <TD>Data 2</TD>
-        <TD>Data 3</TD>
-        <TD>Data 4</TD>
-        <TD>Data 5</TD>
-        <TD>Data 6</TD>
-        <TD>Data 7</TD>
-        <TD>Data 8</TD>
-        <TD>Data 9</TD>
-        <TD>Data 10</TD>
-        <TD>Data 11</TD>
-    </TR>
-</TABLE>
+<table id="POIReport">
+    <thead>
+    <tr>
+        <th>POI location</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Mold Min</th>
+        <th>Mold Avg</th>
+        <th>Mold Max</th>
+        <th>AQ Min</th>
+        <th>AQ Avg</th>
+        <th>AQ Max</th>
+        <th>#of data points</th>
+        <th>Flagged?</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
 <button id="Back3" onclick="window.location = 'COchooseFunctionality.html'">Back</button>
+<script src="app.js"></script>
+<script>getPOIReport()</script>
 </body>
 </html>
